@@ -4,14 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.validation.constraints.NotNull;
-
 @Getter
 @Setter
 @AllArgsConstructor
-public class MotoristaRequest {
+public class UpdateMotoristaRequest {
 
-    @NotNull
     private String nome;
     private String veiculo;
     private String cnh;
