@@ -4,9 +4,9 @@ import com.api.zuber.controller.request.CreateMotoristaRequest;
 import com.api.zuber.controller.request.UpdateMotoristaRequest;
 import com.api.zuber.controller.response.MotoristaResponse;
 import com.api.zuber.domain.Motorista;
-import com.api.zuber.mapper.MotoristaMapper;
 import com.api.zuber.repository.MotoristaRepository;
 import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,11 +19,12 @@ import java.util.List;
 public class MotoristaService {
 
     private final MotoristaRepository motoristaRepository;
+    private final ModelMapper modelMapper = new ModelMapper();
 
     public MotoristaResponse getById(Long id) {
 
         Motorista motorista = findById(id);
-        return MotoristaMapper.toResponse(motorista);
+        return modelMapper.map(motorista, MotoristaResponse.class);
     }
 
     @Transactional
@@ -31,7 +32,7 @@ public class MotoristaService {
 
         validateUniqueCNH(request.getCnh());
 
-        Motorista motorista = MotoristaMapper.toEntity(request);
+        Motorista motorista = modelMapper.map(request, Motorista.class);
         motoristaRepository.save(motorista);
 
         return motorista.getId();

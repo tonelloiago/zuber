@@ -5,9 +5,9 @@ import com.api.zuber.controller.request.CreatePassageiroRequest;
 import com.api.zuber.controller.request.UpdatePassageiroRequest;
 import com.api.zuber.controller.response.PassageiroResponse;
 import com.api.zuber.domain.Passageiro;
-import com.api.zuber.mapper.PassageiroMapper;
 import com.api.zuber.repository.PassageiroRepository;
 import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,11 +20,12 @@ import java.time.LocalDate;
 public class PassageiroService {
 
     private final PassageiroRepository passageiroRepository;
+    private final ModelMapper modelMapper = new ModelMapper();
 
     public PassageiroResponse getByCPF(String cpf) {
 
         Passageiro passageiro = findByCPF(cpf);
-        return PassageiroMapper.toResponse(passageiro);
+        return modelMapper.map(passageiro, PassageiroResponse.class);
     }
 
     @Transactional
@@ -32,7 +33,7 @@ public class PassageiroService {
 
         validateUniqueCPF(request.getCpf());
 
-        Passageiro passageiro = PassageiroMapper.toEntity(request);
+        Passageiro passageiro = modelMapper.map(request, Passageiro.class);
         passageiroRepository.save(passageiro);
 
         return passageiro.getId();
