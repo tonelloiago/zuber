@@ -26,9 +26,14 @@ public class MotoristaController {
 
     private final MotoristaService motoristaService;
 
-    @GetMapping
-    public MotoristaResponse getById(@RequestParam(value = "id") Long id) {
+    @GetMapping("/{id}")
+    public MotoristaResponse getById(@PathVariable(value = "id") Long id) {
         return motoristaService.getById(id);
+    }
+
+    @GetMapping("/cnh/{cnh}")
+    public MotoristaResponse getById(@PathVariable(value = "cnh") String cnh) {
+        return motoristaService.getByCNH(cnh);
     }
 
     @PostMapping

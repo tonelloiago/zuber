@@ -25,6 +25,12 @@ public class MotoristaService {
         return modelMapper.map(motorista, MotoristaResponse.class);
     }
 
+    public MotoristaResponse getByCNH(String cnh) {
+
+        Motorista motorista = findByCNH(cnh);
+        return modelMapper.map(motorista, MotoristaResponse.class);
+    }
+
     @Transactional
     public Long create(CreateMotoristaRequest request) {
 
@@ -67,6 +73,12 @@ public class MotoristaService {
         );
     }
 
+    private Motorista findByCNH(String cnh) {
+        return motoristaRepository.findByCnh(cnh).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.NOT_FOUND)
+        );
+    }
+
     private void validateUniqueCNH(String cnh) {
 
         boolean existsByCnh = motoristaRepository.existsByCnh(cnh);
@@ -86,5 +98,4 @@ public class MotoristaService {
         }
 
     }
-
 }
