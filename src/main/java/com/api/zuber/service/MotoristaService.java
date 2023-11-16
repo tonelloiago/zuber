@@ -5,17 +5,15 @@ import com.api.zuber.controller.request.UpdateMotoristaRequest;
 import com.api.zuber.controller.response.MotoristaResponse;
 import com.api.zuber.domain.Motorista;
 import com.api.zuber.repository.MotoristaRepository;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
-
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class MotoristaService {
 
     private final MotoristaRepository motoristaRepository;

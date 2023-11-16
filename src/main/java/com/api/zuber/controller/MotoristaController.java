@@ -4,7 +4,7 @@ import com.api.zuber.controller.request.CreateMotoristaRequest;
 import com.api.zuber.controller.request.UpdateMotoristaRequest;
 import com.api.zuber.controller.response.MotoristaResponse;
 import com.api.zuber.service.MotoristaService;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,11 +18,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequestMapping("/motorista")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class MotoristaController {
 
     private final MotoristaService motoristaService;

@@ -4,7 +4,7 @@ import com.api.zuber.controller.request.CreatePassageiroRequest;
 import com.api.zuber.controller.request.UpdatePassageiroRequest;
 import com.api.zuber.controller.response.PassageiroResponse;
 import com.api.zuber.service.PassageiroService;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +21,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/passageiro")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class PassageiroController {
 
     private final PassageiroService passageiroService;

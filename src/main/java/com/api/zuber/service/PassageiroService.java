@@ -6,7 +6,7 @@ import com.api.zuber.controller.request.UpdatePassageiroRequest;
 import com.api.zuber.controller.response.PassageiroResponse;
 import com.api.zuber.domain.Passageiro;
 import com.api.zuber.repository.PassageiroRepository;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.time.LocalDate;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class PassageiroService {
 
     private final PassageiroRepository passageiroRepository;
