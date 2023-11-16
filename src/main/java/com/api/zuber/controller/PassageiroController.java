@@ -1,9 +1,9 @@
 package com.api.zuber.controller;
 
-import com.api.zuber.controller.request.CreateMotoristaRequest;
-import com.api.zuber.controller.request.UpdateMotoristaRequest;
-import com.api.zuber.controller.response.MotoristaResponse;
-import com.api.zuber.service.MotoristaService;
+import com.api.zuber.controller.request.CreatePassageiroRequest;
+import com.api.zuber.controller.request.UpdatePassageiroRequest;
+import com.api.zuber.controller.response.PassageiroResponse;
+import com.api.zuber.service.PassageiroService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,37 +20,31 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/motorista")
+@RequestMapping("/passageiro")
 @RequiredArgsConstructor
-public class MotoristaController {
+public class PassageiroController {
 
-    private final MotoristaService motoristaService;
+    private final PassageiroService passageiroService;
 
-    @GetMapping("/{id}")
-    public MotoristaResponse getById(@PathVariable(value = "id") Long id) {
-        return motoristaService.getById(id);
-    }
-
-    @GetMapping("/cnh/{cnh}")
-    public MotoristaResponse getById(@PathVariable(value = "cnh") String cnh) {
-        return motoristaService.getByCNH(cnh);
+    @GetMapping
+    public PassageiroResponse getByCPF(@RequestParam(value = "cpf") String cpf) {
+        return passageiroService.getByCPF(cpf);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Long create(@Valid @RequestBody CreateMotoristaRequest request) {
-        return motoristaService.create(request);
+    public Long create(@Valid @RequestBody CreatePassageiroRequest request) {
+        return passageiroService.create(request);
     }
 
     @PutMapping("/{id}")
-    public Long update(@PathVariable Long id, @Valid @RequestBody UpdateMotoristaRequest request) {
-        return motoristaService.update(id, request);
+    public Long update(@PathVariable Long id, @Valid @RequestBody UpdatePassageiroRequest request) {
+        return passageiroService.update(id, request);
     }
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
-        motoristaService.delete(id);
+        passageiroService.delete(id);
     }
 
 }
-

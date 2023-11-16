@@ -1,18 +1,14 @@
-package com.api.zuber.controller.response;
+package com.api.zuber.controller.request;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
-public class MotoristaResponse {
+public class UpdateMotoristaRequest {
 
-    private Long id;
     private String nome;
     private String veiculo;
     private String cnh;
